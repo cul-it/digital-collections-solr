@@ -274,7 +274,6 @@
    <copyField source="features" dest="text"/>
    <copyField source="includes" dest="text"/>
    <copyField source="manu" dest="manu_exact"/>
-   <copyField source="location_p" dest="place_location_rpt"/>
 
    <!-- Copy the price into a currency enabled field (default USD) -->
    <copyField source="price" dest="price_c"/>
