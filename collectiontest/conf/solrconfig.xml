@@ -907,17 +907,6 @@
   </requestHandler>
 
 
-
-
-<!-- for requests to get a single document; use id=666 instead of q=id:666 -->
-  <requestHandler name="document" class="solr.SearchHandler" >
-      <lst name="defaults">
-        <str name="echoParams">all</str>
-        <str name="fl">*</str>
-        <str name="rows">1</str>
-        <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
-    </lst>
-      </requestHandler>
   <!-- realtime get handler, guaranteed to return the latest stored fields of
        any document, without the need to commit or open a new searcher.  The
        current implementation relies on the updateLog feature being enabled.
