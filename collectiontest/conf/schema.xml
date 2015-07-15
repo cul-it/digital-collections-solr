@@ -727,6 +727,12 @@
     <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType"
         geo="true" distErrPct="0.025" maxDistErr="0.000009" units="degrees" />
 
+          <dynamicField name="geospatial" type="location_rpt" indexed="true" stored="true" multiValued="true" />
+  <copyField source="*_p" dest="geospatial" />
+
+  <copyField source="geospatial" dest="geospatial_facet" />
+
+
    <!-- Money/currency field type. See http://wiki.apache.org/solr/MoneyFieldType
         Parameters:
           defaultCurrency: Specifies the default currency if none specified. Defaults to "USD"
