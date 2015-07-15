@@ -733,7 +733,8 @@
           <dynamicField name="*_geospatial" type="location_rpt" indexed="true" stored="true" multiValued="true" />
   <copyField source="*_p" dest="*_geospatial" />
 
-  <copyField source="*_geospatial" dest="geospatial_facet" />
+  <copyField source="located_geospatial" dest="located_ss" />
+
 
 
    <!-- Money/currency field type. See http://wiki.apache.org/solr/MoneyFieldType
