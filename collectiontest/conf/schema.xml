@@ -156,6 +156,7 @@
    <field name="content_type" type="string" indexed="true" stored="true" multiValued="true"/>
    <field name="last_modified" type="date" indexed="true" stored="true"/>
    <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="located" type="string" indexed="true" stored="true" multiValued="true" />
 
    <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
@@ -731,9 +732,9 @@
         geo="true" distErrPct="0.025" maxDistErr="0.000009" units="degrees" />
 
           <dynamicField name="*_geospatial" type="location_rpt" indexed="true" stored="true" multiValued="true" />
-  <copyField source="*_p" dest="*_geospatial" />
+  <copyField source="located" dest="*_geospatial" />
 
-  <copyField source="located_geospatial" dest="located_ss" />
+  <copyField source="located_geospatial" dest="located_facet" />
 
 
 
