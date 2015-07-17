@@ -55,12 +55,12 @@
        found in it are included as if you had used the following
        syntax...
     -->   
-              <lib dir="../lib/solr-analysis-extras-4.3.0.jar" />
-              <lib dir="../lib/contrib/analysis-extras/lib/icu4j-49.1.jar" />
-              <lib dir="../lib/contrib/analysis-extras/lib/morfologik-fsa-1.5.5.jar" />
-              <lib dir="../lib/contrib/analysis-extras/lib/morfologik-polish-1.5.5.jar" />
-              <lib dir="../lib/contrib/analysis-extras/lib/morfologik-stemming-1.5.5.jar" />
-              <lib dir="../lib/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
+              <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/solr-analysis-extras-4.3.0.jar" />
+              <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib/icu4j-49.1.jar" />
+              <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib/morfologik-fsa-1.5.5.jar" />
+              <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib/morfologik-polish-1.5.5.jar" />
+              <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib/morfologik-stemming-1.5.5.jar" />
+              <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lucene-libs" regex=".*\.jar" />
 
 
   <!-- A 'dir' option by itself adds any files found in the directory 
