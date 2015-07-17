@@ -187,7 +187,7 @@
     <dynamicField name="*_llsm" type="location" stored="true" indexed="false" multiValued="true"/>
     <dynamicField name="*_llsi" type="location" stored="true" indexed="true" multiValued="false"/>
     <dynamicField name="*_llsim" type="location" stored="true" indexed="true" multiValued="true"/>
-    <dynamicField name="*_geocoordinates" type="location_rpt" stored="true" indexed= "true" multivalued="false" />
+    <dynamicField name="*_geocoordinates" type="location_rpt" stored="true" indexed="true" multiValued="true"/>
 
     <!-- you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
     <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
