@@ -64,7 +64,7 @@
           active_fedora_model_ssi
           object_type_si -->
         </str>
-        
+        </lst>
     <arr name="last-components">
       <str>spellcheck</str>
     </arr>
