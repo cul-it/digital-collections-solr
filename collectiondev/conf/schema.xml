@@ -9,6 +9,9 @@
   <fields>
     <field name="id" type="string" stored="true" indexed="true" multiValued="false" required="true"/>
     <field name="timestamp" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
+
+    <field name="_version_" type="long"     indexed="true"  stored="true"/>
+
     
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
@@ -30,7 +33,8 @@
 	<field name="object_profile_display" type="string" stored="true" indexed="true"/>
 	<field name="has_model_s" type="string" stored="true" indexed="true"/>
 	<field name="is_governed_by_s" type="string" stored="true" indexed="true"/>
-	
+
+
 	<!--
 	These are hard coded in places in hydra-head, but we hope to fix that.
 	
@@ -62,6 +66,8 @@
     <dynamicField name="*_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tsiv" type="text" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tsimv" type="text" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
+
     
     <!-- English text (_te...) -->
     <dynamicField name="*_tei" type="text_en" stored="false" indexed="true" multiValued="false"/>
