@@ -52,7 +52,7 @@
           pubdate_tesim
           keywords_esim
           image_tesim
-          image_ocr_tesim -->
+          image_ocr_tesim 
           subject_timv
           witness_timv
           lang_timv
@@ -62,80 +62,9 @@
           title_timv
           publisher_timv
           active_fedora_model_ssi
-          object_type_si
+          object_type_si -->
         </str>
-        <str name="pf">
-          all_text_timv^10
-        </str>
-       <str name="author_qf">
-       	author_timv
-       </str>
-       <str name="author_pf">
-       	author_timv^10
-       </str> 
-       <str name="title_qf">
-       	 title_timv
-       </str>
-       <str name="title_pf">
-         title_timv^10
-       </str>
-       <str name="subject_qf">
-         subject_timv
-       </str>
-       <str name="subject_pf">
-         subject_timv^10
-       </str>
-       <str name="publisher_qf">
-          publisher_timv
-       </str>
-       <str name="publisher_pf">
-          publisher_timv^10
-       </str>
-       <str name="pubdate_qf">
-          pubdate_timv
-       </str>
-       <str name="pubdate_pf">
-          pubdate_timv^10
-       </str>
-       
-       <str name="fl">
-         *, 
-         score
-       </str>
-
-
-
-
-       <str name="facet">true</str>
-       <str name="facet.mincount">1</str>
-       <str name="facet.limit">10</str>
-       <str name="facet.field">active_fedora_model_ssi</str>
-       <str name="facet.field">extent_tesim</str>
-       <str name="facet.field">image_format_tesim</str>
-       <str name="facet.field">image_ethnic_tesim</str>
-       <str name="facet.field">image_keyword_tesim</str>
-       <str name="facet.field">publisher_tesim</str>
-       <str name="facet.field">book_author_tesim</str> 
-       <str name="facet.field">author_tesim</str> 
-       <str name="facet.field">title_tesim</str>
-       <str name="facet.field">pubdate_tesim</str>
-       <str name="facet.field">keywords_tesim</str>
-       <str name="facet.field">image_date_tesim</str>
-       <str name="facet.field">image_geo_tesim</str>
-       <str name="facet.field">object_type_si</str>
-       <str name="facet.field">subject_tesim</str>
-       <str name="facet.field">witness_tesim</str>
-       <str name="facet.field">lang_tesim</str>
-       <str name="facet.field">vol_tesim</str>
-       
-       <str name="spellcheck">true</str>
-       <str name="spellcheck.dictionary">default</str>
-       <str name="spellcheck.onlyMorePopular">true</str>
-       <str name="spellcheck.extendedResults">true</str>
-       <str name="spellcheck.collate">false</str>
-       <str name="spellcheck.count">5</str>
-
-     </lst>
+        
     <arr name="last-components">
       <str>spellcheck</str>
     </arr>
