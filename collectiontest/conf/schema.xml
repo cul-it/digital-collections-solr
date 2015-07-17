@@ -322,26 +322,7 @@
     </fieldType>
 
     <!-- A text field with defaults appropriate for English an NGrams -->
-    <fieldType name="text_en_ng" class="solr.TextField" positionIncrementGap="100">
-      <analyzer type="index">
-        <tokenizer class="solr.ICUTokenizerFactory"/>
-        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
-        <filter class="solr.EnglishPossessiveFilterFactory"/>
-        <!-- EnglishMinimalStemFilterFactory is less aggressive than PorterStemFilterFactory: -->
-        <filter class="solr.EnglishMinimalStemFilterFactory"/>
-        <filter class="solr.TrimFilterFactory"/>
-        <filter class="solr.EdgeNGramFilterFactory" minGramSize="3" maxGramSize="15" />
-      </analyzer>
-
-      <analyzer type="index">
-        <tokenizer class="solr.ICUTokenizerFactory"/>
-        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
-        <filter class="solr.EnglishPossessiveFilterFactory"/>
-        <!-- EnglishMinimalStemFilterFactory is less aggressive than PorterStemFilterFactory: -->
-        <filter class="solr.EnglishMinimalStemFilterFactory"/>
-        <filter class="solr.TrimFilterFactory"/>
-      </analyzer>
-    </fieldType>
+  
     
   </types>
   
