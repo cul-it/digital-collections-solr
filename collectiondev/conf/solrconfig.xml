@@ -85,7 +85,7 @@
   <lib dir="../../../dist/" regex="solr-velocity-\d.*\.jar" />
 
   <lib dir="lib/contrib/analysis-extras/lib" />
-  <lib dir="/lib/contrib/analysis-extras/lucene-libs" />
+  <lib dir="lib/contrib/analysis-extras/lucene-libs" />
 
   <!-- an exact 'path' can be used instead of a 'dir' to specify a 
        specific jar file.  This will cause a serious error to be logged 
