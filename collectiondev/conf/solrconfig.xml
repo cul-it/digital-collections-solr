@@ -8,7 +8,6 @@
   
   <luceneMatchVersion>LUCENE_43</luceneMatchVersion>
 
-  <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
 
   <!-- solr lib dirs -->
   <lib dir="../lib/contrib/analysis-extras/lib" />
