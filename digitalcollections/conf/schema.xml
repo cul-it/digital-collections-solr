@@ -364,6 +364,8 @@
 
   <!-- new copyfields for sharedshelf -->
 <copyField source="*_tesim" dest="all_text_timv" />
+<copyField source="*_location_tesim" dest="location_facet_tesim" />
+
 
 
 
