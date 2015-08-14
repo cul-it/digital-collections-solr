@@ -46,19 +46,24 @@
           all_text_timv^10
         </str>
 
-      <str name="author_qf">
+       <str name="author_qf">
+        author_timv
        </str>
        <str name="author_pf">
-       </str>
+        author_timv^10
+       </str> 
        <str name="title_qf">
+         title_timv
        </str>
        <str name="title_pf">
+         title_timv^10
        </str>
        <str name="subject_qf">
+         subject_timv
        </str>
        <str name="subject_pf">
+         subject_timv^10
        </str>
-
        <str name="fl">
          *,
          score
