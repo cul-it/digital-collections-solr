@@ -366,6 +366,22 @@
   <!-- new copyfields for sharedshelf -->
 <copyField source="*_tesim" dest="all_text_timv" />
 <copyField source="*_location_tesim" dest="location_facet_tesim" />
+<copyField source="*_creator_tesim" dest="creator_facet_tesim" />
+
+
+<!-- copyfields to join up dlxs and sharedshelf -->
+<copyField source="author_tesim" dest="author_creator_tesim" />
+<copyField source="keywords_t" dest="subject_tesim" />
+<copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
+<copyField source="keywords_t" dest="subject_tesim" />
+<copyField source="pubstmt_publisher_tesim" dest="repository_tesim" />
+<copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
+<copyField source="note_tesim" dest="notes_tesim" />
+
+
+
+
+
 
 
 
