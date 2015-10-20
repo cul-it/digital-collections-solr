@@ -16,9 +16,12 @@
     </updateLog>
   </updateHandler>
 
+
   <!-- solr lib dirs -->
-  <lib dir="../lib/contrib/analysis-extras/lib" />
-  <lib dir="../lib/contrib/analysis-extras/lucene-libs" />
+  <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib" />
+  <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lucene-libs" />
+
+
 
   <dataDir>${solr.data.dir:}</dataDir>
 
