@@ -3,9 +3,9 @@
   <!-- NOTE: various comments and unused configuration possibilities have been purged
      from this file.  Please refer to http://wiki.apache.org/solr/SolrConfigXml,
      as well as the default solrconfig file included with Solr -->
-  
+
   <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
-  
+
   <luceneMatchVersion>LUCENE_40</luceneMatchVersion>
 
   <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
@@ -13,7 +13,7 @@
   <!-- solr lib dirs -->
   <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib" />
   <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lucene-libs" />
-  
+
   <dataDir>${solr.data.dir:}</dataDir>
 
   <requestHandler name="search" class="solr.SearchHandler" default="true">
@@ -30,15 +30,15 @@
        <float name="tie">0.01</float>
        <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight_config will use these for the
-            "keywords" search. See the author_qf/author_pf, title_qf, etc 
+            "keywords" search. See the author_qf/author_pf, title_qf, etc
             below, which the default blacklight_config will specify for
             those searches. You may also be interested in:
             http://wiki.apache.org/solr/LocalParams
        -->
         <str name="qf">
           id
-          all_text_timv
-       <!--   
+
+       <!--
           active_fedora_model_ssi -->
         </str>
 
@@ -51,7 +51,7 @@
        </str>
        <str name="author_pf">
         author_timv^10
-       </str> 
+       </str>
        <str name="title_qf">
          title_timv
        </str>
@@ -110,7 +110,7 @@
       </str>
     </lst>
   </requestHandler>
-  
+
   <requestHandler name="standard" class="solr.SearchHandler">
      <lst name="defaults">
        <str name="echoParams">explicit</str>
@@ -141,35 +141,35 @@
       <str name="buildOnOptimize">true</str>
     </lst>
   </searchComponent>
-  
-  <requestHandler name="/replication" class="solr.ReplicationHandler" startup="lazy" /> 
-  
+
+  <requestHandler name="/replication" class="solr.ReplicationHandler" startup="lazy" />
+
   <requestDispatcher handleSelect="true" >
     <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048" />
   </requestDispatcher>
-  
+
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
 
 
- <!-- Update Request Handler.  
-       
+ <!-- Update Request Handler.
+
        http://wiki.apache.org/solr/UpdateXmlMessages
        The canonical Request Handler for Modifying the Index through
        commands specified using XML, JSON, CSV, or JAVABIN
        Note: Since solr1.1 requestHandlers requires a valid content
        type header if posted in the body. For example, curl now
        requires: -H 'Content-type:text/xml; charset=utf-8'
-       
-       To override the request content type and force a specific 
-       Content-type, use the request parameter: 
+
+       To override the request content type and force a specific
+       Content-type, use the request parameter:
          ?update.contentType=text/csv
-       
+
        This handler will pick a response format to match the input
        if the 'wt' parameter is not explicit
     -->
   <requestHandler name="/update" class="solr.UpdateRequestHandler">
-    <!-- See below for information on defining 
-         updateRequestProcessorChains that can be used by name 
+    <!-- See below for information on defining
+         updateRequestProcessorChains that can be used by name
          on each Update Request
       -->
     <!--
@@ -179,7 +179,7 @@
        -->
   </requestHandler>
 
-  <!-- for back compat with clients using /update/json and /update/csv -->  
+  <!-- for back compat with clients using /update/json and /update/csv -->
   <requestHandler name="/update/json" class="solr.UpdateRequestHandler">
         <lst name="defaults">
          <str name="stream.contentType">application/json</str>
@@ -193,7 +193,7 @@
 
 
   <requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers" />
-  
+
   <requestHandler name="/admin/ping" class="solr.PingRequestHandler">
     <lst name="invariants">
       <str name="q">solrpingquery</str>
@@ -212,30 +212,30 @@
          uncommitted changes to the index, so use of a hard autoCommit
          is recommended (see below).
          "dir" - the target directory for transaction logs, defaults to the
-                solr data directory.  --> 
+                solr data directory.  -->
     <updateLog>
       <str name="dir">${solr.ulog.dir:}</str>
     </updateLog>
- 
+
     <!-- AutoCommit
          Perform a hard commit automatically under certain conditions.
          Instead of enabling autoCommit, consider using "commitWithin"
-         when adding documents. 
+         when adding documents.
          http://wiki.apache.org/solr/UpdateXmlMessages
          maxDocs - Maximum number of documents to add since the last
                    commit before automatically triggering a new commit.
          maxTime - Maximum amount of time in ms that is allowed to pass
                    since a document was added before automatically
-                   triggering a new commit. 
+                   triggering a new commit.
          openSearcher - if false, the commit causes recent index changes
            to be flushed to stable storage, but does not cause a new
            searcher to be opened to make those changes visible.
          If the updateLog is enabled, then it's highly recommended to
          have some sort of hard autoCommit to limit the log size.
       -->
-     <autoCommit> 
-       <maxTime>${solr.autoCommit.maxTime:15000}</maxTime> 
-       <openSearcher>false</openSearcher> 
+     <autoCommit>
+       <maxTime>${solr.autoCommit.maxTime:15000}</maxTime>
+       <openSearcher>false</openSearcher>
      </autoCommit>
 
     <!-- softAutoCommit is like autoCommit except it causes a
@@ -244,12 +244,12 @@
          faster and more near-realtime friendly than a hard commit.
       -->
 
-     <autoSoftCommit> 
-       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime> 
+     <autoSoftCommit>
+       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
      </autoSoftCommit>
 
     <!-- Update Related Event Listeners
-         
+
          Various IndexWriter related events can trigger Listeners to
          take actions.
          postCommit - fired after every commit or optimize command
@@ -257,10 +257,10 @@
       -->
     <!-- The RunExecutableListener executes an external command from a
          hook such as postCommit or postOptimize.
-         
+
          exe - the name of the executable to run
          dir - dir to use as the current working directory. (default=".")
-         wait - the calling thread waits until the executable returns. 
+         wait - the calling thread waits until the executable returns.
                 (default="true")
          args - the arguments to pass to the program.  (default is none)
          env - environment variables to set.  (default is none)
@@ -280,10 +280,10 @@
       -->
 
   </updateHandler>
-  
-  <!-- config for the admin interface --> 
+
+  <!-- config for the admin interface -->
   <admin>
     <defaultQuery>search</defaultQuery>
   </admin>
-  
+
 </config>
