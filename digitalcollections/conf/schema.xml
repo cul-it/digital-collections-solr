@@ -344,9 +344,10 @@
 
   <copyField source="pubstmt_idno_tesim" dest="book_id_ts"/>
   <copyField source="title_tesim" dest="title_ssi"/>
-
   <copyField source="author_tesim" dest="author_timv" />
   <copyField source="creator_tesim" dest="author_timv" />
+  <copyField source="creator_tesim" dest="author_t" />
+  <copyField source="author_tesim" dest="author_t" />
   <copyField source="title_tesim" dest="title_timv" />
   <copyField source="subject_tesim" dest="subject_timv" />
   <copyField source="pubdate_tesim" dest="pubdate_timv" />
@@ -358,6 +359,8 @@
   <copyField source="title_tesim" dest="all_text_timv" />
   <copyField source="subject_tesim" dest="all_text_timv" />
   <copyField source="pubdate_tesim" dest="all_text_timv" />
+  <copyField source="pubdate_tesim" dest="all_text_timv" />
+  <copyField source="pubdate_tesim" dest="latest_date_isi" />
   <copyField source="publisher_tesim" dest="all_text_timv" />
   <copyField source="image_ocr_tesim" dest="all_text_timv" />
   <copyField source="title_tesim" dest="all_text_timv" />
@@ -375,6 +378,9 @@
 
 <!-- copyfields to join up dlxs and sharedshelf -->
 <copyField source="author_tesim" dest="author_creator_tesim" />
+<copyField source="author_tesim" dest="author_creator_tesim" />
+<copyField source="author_tesim" dest="creator_t" />
+
 <copyField source="author_tesim" dest="creator_facet_tesim" />
 <copyField source="creator_tesim" dest="creator_facet_tesim" />
 <copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
@@ -383,6 +389,7 @@
 <copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
 <copyField source="note_tesim" dest="notes_tesim" />
 <copyField source="active_fedora_model_ssi" dest="format_tesim" />
+
 
 
 
