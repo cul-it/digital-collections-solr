@@ -362,6 +362,7 @@
   <copyField source="pubdate_tesim" dest="all_text_timv" />
   <copyField source="pubdate_tesim" dest="latest_date_isi" />
   <copyField source="publisher_tesim" dest="all_text_timv" />
+  <copyField source="pubdate_tesim" dest="date_tesim" />
   <copyField source="image_ocr_tesim" dest="all_text_timv" />
   <copyField source="title_tesim" dest="all_text_timv" />
   <copyField source="witness_tesim" dest="all_text_timv" />
