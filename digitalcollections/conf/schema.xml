@@ -370,7 +370,7 @@
   <copyField source="lang_tesim" dest="lang_timv" />
   <copyField source="vol_tesim" dest="vol_timv" />
   <copyField source="vol_tesim" dest="all_text_timv" />
-  <copyField source="chla_book_ocr_teim" dest="all_text_timv" />
+  <copyField source="book_ocr_teim" dest="all_text_timv" />
 
   <!-- new copyfields for sharedshelf -->
 <copyField source="*_tesim" dest="all_text_timv" />
