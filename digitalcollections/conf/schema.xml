@@ -379,7 +379,6 @@
 
 <!-- copyfields to join up dlxs and sharedshelf -->
 <copyField source="author_tesim" dest="author_creator_tesim" />
-<copyField source="author_tesim" dest="author_creator_tesim" />
 <copyField source="author_tesim" dest="creator_t" />
 
 <copyField source="author_tesim" dest="creator_facet_tesim" />
