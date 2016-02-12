@@ -392,6 +392,8 @@
 <copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
 <copyField source="note_tesim" dest="notes_tesim" />
 <copyField source="active_fedora_model_ssi" dest="format_tesim" />
+<copyField source="repository_name_tesim" dest="repository_tesim" />
+
 
 
 
