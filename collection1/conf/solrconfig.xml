@@ -20,14 +20,20 @@
     <!-- default values for query parameters can be specified, these
          will be overridden by parameters in the request
       -->
-     <lst name="defaults">
+
+
+
+    <lst name="defaults">
        <str name="defType">edismax</str>
        <str name="echoParams">all</str>
        <str name="q.alt">*:*</str>
-       <str name="mm">2<-1 5<-2 6<90%</str>
+       <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
        <int name="qs">1</int>
        <int name="ps">2</int>
        <float name="tie">0.01</float>
+
+
+
        <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight_config will use these for the
             "keywords" search. See the author_qf/author_pf, title_qf, etc
@@ -195,7 +201,7 @@
   </requestHandler>
 
 
-  
+
   <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
   <requestHandler name="document" class="solr.SearchHandler" >
     <lst name="defaults">
