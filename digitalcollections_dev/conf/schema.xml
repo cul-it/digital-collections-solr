@@ -361,6 +361,10 @@
   <copyField source="pubdate_tesim" dest="all_text_timv" />
   <copyField source="pubdate_tesim" dest="all_text_timv" />
   <copyField source="pubdate_tesim" dest="latest_date_isi" />
+<copyField source="date_created_tesim" dest="latest_date_isi" />
+    <copyField source="date_created_tesim" dest="date_tesim" />
+    <copyField source="date_created_tesim" dest="all_text_timv" />
+
   <copyField source="publisher_tesim" dest="all_text_timv" />
   <copyField source="image_ocr_tesim" dest="all_text_timv" />
   <copyField source="title_tesim" dest="all_text_timv" />
@@ -384,9 +388,13 @@
 <copyField source="author_tesim" dest="creator_facet_tesim" />
 <copyField source="creator_tesim" dest="creator_facet_tesim" />
 <copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
+<copyField source="place_of_origin_tesim" dest="creation_site_location_tesim" />
 <copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
 <copyField source="note_tesim" dest="notes_tesim" />
 <copyField source="active_fedora_model_ssi" dest="format_tesim" />
+<copyField source="repository_name_tesim" dest="repository_tesim" />
+<copyField source="collection_name_tesim" dest="collection_tesim" />
+
 
 
 
