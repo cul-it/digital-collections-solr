@@ -346,7 +346,7 @@
   <copyField source="title_tesim" dest="title_ssi"/>
   <copyField source="author_tesim" dest="author_timv" />
   <copyField source="creator_tesim" dest="author_timv" />
-  <copyField source="creator_tesim" dest="author_t" />
+  <!-- mutli val creator breaks this - copyField source="creator_tesim" dest="author_t" -->
   <copyField source="author_tesim" dest="author_t" />
   <copyField source="title_tesim" dest="title_timv" />
   <copyField source="subject_tesim" dest="subject_timv" />
