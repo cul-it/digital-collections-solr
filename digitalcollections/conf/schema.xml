@@ -384,7 +384,7 @@
 <copyField source="category_type_tesim" dest="type_tesim" />
 <copyField source="*_bibliography_tesim" dest="bibliography_tesim" />
 <copyField source="*_date_tesim" dest="date_tesim" />
-<copyField source="*_subject_tesim" dest="identifier_tesim" />
+<copyField source="*_subject_tesim" dest="subject_tesim" />
 <copyField source="*_description_tesim" dest="description_tesim" />
 
 
