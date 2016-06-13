@@ -29,7 +29,7 @@
   	<field name="keywords_t" type="string" stored="true" indexed="true"/>
   	<field name="image_geo_t" type="string" stored="true" indexed="true"/>
 	<field name="image_ocr_t" type="string" stored="true" indexed="true"/>
-  <field name="book_ocr_t" type="string" stored="true" indexed="true"/>
+    <field name="book_ocr_t" type="string" stored="true" indexed="true"/>
 	<field name="witness_t" type="string" stored="true" indexed="true"/>
 	<field name="object_profile_display" type="string" stored="true" indexed="true"/>
 	<field name="has_model_s" type="string" stored="true" indexed="true"/>
@@ -382,10 +382,13 @@
 <copyField source="work_type_tesim" dest="type_tesim" />
 <copyField source="classification_type_tesim" dest="type_tesim" />
 <copyField source="category_type_tesim" dest="type_tesim" />
+<copyField source="project_type_tesim" dest="type_tesim" />
 <copyField source="*_bibliography_tesim" dest="bibliography_tesim" />
 <copyField source="*_date_tesim" dest="date_tesim" />
 <copyField source="*_subject_tesim" dest="subject_tesim" />
 <copyField source="*_description_tesim" dest="description_tesim" />
+<copyField source="*_extent_tesim" dest="extent_tesim" />
+<copyField source="*_series_relation_tesim" dest="series_relation_tesim" />
 
 
 
