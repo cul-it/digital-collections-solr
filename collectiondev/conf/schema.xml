@@ -438,6 +438,7 @@
       </analyzer>
     </fieldtype> 
     
+
     <!-- A text field with defaults appropriate for English -->
     <fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
@@ -446,6 +447,9 @@
         <filter class="solr.EnglishPossessiveFilterFactory"/> 
         <!-- EnglishMinimalStemFilterFactory is less aggressive than PorterStemFilterFactory: -->
         <filter class="solr.EnglishMinimalStemFilterFactory"/> 
+        <!-- replace any periods with spaces if they precede a letter -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\.([\d])" replacement=" $1" />
+
         <!--
         <filter class="solr.PorterStemFilterFactory"/>
         -->
