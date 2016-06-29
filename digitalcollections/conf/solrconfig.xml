@@ -38,6 +38,7 @@
         <str name="qf">
           id
           all_text_timv
+          pj_id
        <!--
           active_fedora_model_ssi -->
         </str>
