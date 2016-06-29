@@ -377,7 +377,7 @@
 
   <!-- new copyfields for sharedshelf -->
 <copyField source="*_tesim" dest="all_text_timv" />
-<copyField source="*_tesiv" dest="all_text_timv" />
+<copyField source="pj_id" dest="all_text_timv" />
 
 <copyField source="*_location_tesim" dest="location_facet_tesim" />
 <copyField source="*_creator_tesim" dest="creator_facet_tesim" />
@@ -527,18 +527,14 @@
         <!-- replace any periods with spaces if they precede a letter -->
         <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\.([\d])" replacement=" $1" />
         <!-- if a number follows directly after a letter, insert a space between them -->
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([a-zA-Z])(\d)" replacement="$1 $2" />
         <!-- if a letter follows directly after a number, insert a space between them -->
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(\d)([a-zA-Z])" replacement="$1 $2" />
         <!-- replace any leading whitespace with "lccncode." to ensure left-anchored phrase searching -->
-        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="^[^a-zA-Z\d]*([a-zA-Z\d])" replacement="lccncode.$1" />
         <!-- treat any sequences of characters that are not alphanumeric + periods as breaks between tokens -->
-        <tokenizer class="solr.PatternTokenizerFactory" pattern="[^a-zA-Z\d\.]+"/>
         <filter class="solr.LowerCaseFilterFactory" />
       </analyzer>
     </fieldType>
 
-    
+
     <!-- queries for paths match documents at that path, or in descendent paths -->
     <fieldType name="descendent_path" class="solr.TextField">
       <analyzer type="index">
