@@ -376,6 +376,7 @@
 
   <!-- new copyfields for sharedshelf -->
 <copyField source="*_tesim" dest="all_text_timv" />
+<copyField source="*_teimv" dest="all_text_timv" />
 <copyField source="*_location_tesim" dest="location_facet_tesim" />
 <copyField source="*_creator_tesim" dest="creator_facet_tesim" />
 <copyField source="*_identifier_tesim" dest="identifier_tesim" />
