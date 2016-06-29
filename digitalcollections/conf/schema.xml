@@ -198,6 +198,7 @@
     <field name="subject_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
     <field name="pubdate_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
     <field name="image_ocr_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="pj_id" type="callNumberNormalized" indexed="true" stored="true" multiValued="false" />
 
     <!-- deprecated fields from pre-Solr 4.0 pre-hydra 5.0 -->
 <!--
@@ -493,6 +494,7 @@
       </analyzer>
     </fieldType>
 
+
     <!-- single token analyzed text, for sorting.  Punctuation is significant. -->
     <fieldtype name="alphaSort" class="solr.TextField" sortMissingLast="true" omitNorms="true">
       <analyzer>
@@ -517,6 +519,26 @@
       </analyzer>
     </fieldType>
 
+
+    <!-- While the primary target of this analysis is LC Call Numbers, 
+    other call numbers such as "1-1-1" and "Thesis 3" should be supported. -->
+    <fieldType name="callNumberNormalized" class="solr.TextField" omitNorms="true">
+      <analyzer>
+        <!-- replace any periods with spaces if they precede a letter -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\.([\d])" replacement=" $1" />
+        <!-- if a number follows directly after a letter, insert a space between them -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([a-zA-Z])(\d)" replacement="$1 $2" />
+        <!-- if a letter follows directly after a number, insert a space between them -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(\d)([a-zA-Z])" replacement="$1 $2" />
+        <!-- replace any leading whitespace with "lccncode." to ensure left-anchored phrase searching -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="^[^a-zA-Z\d]*([a-zA-Z\d])" replacement="lccncode.$1" />
+        <!-- treat any sequences of characters that are not alphanumeric + periods as breaks between tokens -->
+        <tokenizer class="solr.PatternTokenizerFactory" pattern="[^a-zA-Z\d\.]+"/>
+        <filter class="solr.LowerCaseFilterFactory" />
+      </analyzer>
+    </fieldType>
+
+    
     <!-- queries for paths match documents at that path, or in descendent paths -->
     <fieldType name="descendent_path" class="solr.TextField">
       <analyzer type="index">
@@ -526,6 +548,8 @@
         <tokenizer class="solr.KeywordTokenizerFactory" />
       </analyzer>
     </fieldType>
+
+
 
     <!-- queries for paths match documents at that path, or in ancestor paths -->
     <fieldType name="ancestor_path" class="solr.TextField">
