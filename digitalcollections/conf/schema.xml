@@ -344,7 +344,6 @@
   <!-- copy fields;  note that you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
 
   <copyField source="pubstmt_idno_tesim" dest="book_id_ts"/>
-  <copyField source="title_tesim" dest="title_ssi"/>
   <copyField source="author_tesim" dest="author_timv" />
   <copyField source="creator_tesim" dest="author_timv" />
   <!-- mutli val creator breaks this - copyField source="creator_tesim" dest="author_t" -->
