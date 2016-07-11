@@ -385,6 +385,7 @@
 <copyField source="classification_type_tesim" dest="type_tesim" />
 <copyField source="category_type_tesim" dest="type_tesim" />
 <copyField source="project_type_tesim" dest="type_tesim" />
+<copyField sourc="*_mat_tech_tesim" dest="mat_tech_tesim"
 <copyField source="*_bibliography_tesim" dest="bibliography_tesim" />
 <copyField source="*_date_tesim" dest="date_tesim" />
 <copyField source="*_subject_tesim" dest="subject_tesim" />
