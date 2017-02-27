@@ -4,17 +4,50 @@
      from this file.  Please refer to http://wiki.apache.org/solr/SolrConfigXml,
      as well as the default solrconfig file included with Solr -->
 
-  <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
 
-  <luceneMatchVersion>LUCENE_40</luceneMatchVersion>
+  <luceneMatchVersion>6.0.0</luceneMatchVersion>
 
-  <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
+<directoryFactory name="DirectoryFactory" 
+                    class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}">
+  </directoryFactory> 
 
-  <!-- solr lib dirs -->
+  <!-- solr lib dirs 
   <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lib" />
   <lib dir="/cul/data/solr/jrc88.solr.library.cornell.edu/collectiondev/lib/contrib/analysis-extras/lucene-libs" />
-
+-->
   <dataDir>${solr.data.dir:}</dataDir>
+
+     <!-- These will be used if you are using the solr.HdfsDirectoryFactory,
+         otherwise they will be ignored. If you don't plan on using hdfs,
+         you can safely remove this section. -->      
+    <!-- The root directory that collection data should be written to. -->     
+    <str name="solr.hdfs.home">${solr.hdfs.home:}</str>
+    <!-- The hadoop configuration files to use for the hdfs client. -->    
+    <str name="solr.hdfs.confdir">${solr.hdfs.confdir:}</str>
+    <!-- Enable/Disable the hdfs cache. -->    
+    <str name="solr.hdfs.blockcache.enabled">${solr.hdfs.blockcache.enabled:true}</str>
+    <!-- Enable/Disable using one global cache for all SolrCores. 
+         The settings used will be from the first HdfsDirectoryFactory created. -->    
+    <str name="solr.hdfs.blockcache.global">${solr.hdfs.blockcache.global:true}</str>
+
+
+
+  <codecFactory class="solr.SchemaCodecFactory"/>
+
+  <schemaFactory class="ClassicIndexSchemaFactory"/>
+
+
+<requestDispatcher handleSelect="true" >
+    <requestParsers enableRemoteStreaming="false" multipartUploadLimitInKB="2048000" />
+  </requestDispatcher>
+  
+  <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
+
+  <!-- config for the admin interface --> 
+  <admin>
+    <defaultQuery>*:*</defaultQuery>
+  </admin>
+
 
   <requestHandler name="search" class="solr.SearchHandler" default="true">
     <!-- default values for query parameters can be specified, these
@@ -38,6 +71,7 @@
         <str name="qf">
           id
           all_text_timv
+          pj_id
        <!--
           active_fedora_model_ssi -->
         </str>
@@ -129,6 +163,18 @@
   </requestHandler>
 
 
+<searchComponent name="termsComponent" class="solr.TermsComponent" />
+
+  <requestHandler name="/terms" class="solr.SearchHandler">
+    <lst name="defaults">
+      <bool name="terms">true</bool>
+    </lst>
+    <arr name="components">
+      <str>termsComponent</str>
+    </arr>
+  </requestHandler>
+  
+
   <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
     <str name="queryAnalyzerFieldType">textSpell</str>
     <!-- Multiple "Spell Checkers" can be declared and used by this component
@@ -192,16 +238,7 @@
   </requestHandler>
 
 
-  <requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers" />
-
-  <requestHandler name="/admin/ping" class="solr.PingRequestHandler">
-    <lst name="invariants">
-      <str name="q">solrpingquery</str>
-    </lst>
-    <lst name="defaults">
-      <str name="echoParams">all</str>
-    </lst>
-  </requestHandler>
+ 
 
 
   <!-- The default high-performance update handler -->
@@ -281,9 +318,6 @@
 
   </updateHandler>
 
-  <!-- config for the admin interface -->
-  <admin>
-    <defaultQuery>search</defaultQuery>
-  </admin>
+ 
 
 </config>

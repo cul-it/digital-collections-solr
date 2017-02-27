@@ -29,7 +29,7 @@
   	<field name="keywords_t" type="string" stored="true" indexed="true"/>
   	<field name="image_geo_t" type="string" stored="true" indexed="true"/>
 	<field name="image_ocr_t" type="string" stored="true" indexed="true"/>
-  <field name="book_ocr_t" type="string" stored="true" indexed="true"/>
+    <field name="book_ocr_t" type="string" stored="true" indexed="true"/>
 	<field name="witness_t" type="string" stored="true" indexed="true"/>
 	<field name="object_profile_display" type="string" stored="true" indexed="true"/>
 	<field name="has_model_s" type="string" stored="true" indexed="true"/>
@@ -198,6 +198,7 @@
     <field name="subject_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
     <field name="pubdate_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
     <field name="image_ocr_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="pj_id" type="callNumberNormalized" indexed="true" stored="true" multiValued="false" />
 
     <!-- deprecated fields from pre-Solr 4.0 pre-hydra 5.0 -->
 <!--
@@ -343,10 +344,9 @@
   <!-- copy fields;  note that you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
 
   <copyField source="pubstmt_idno_tesim" dest="book_id_ts"/>
-  <copyField source="title_tesim" dest="title_ssi"/>
   <copyField source="author_tesim" dest="author_timv" />
   <copyField source="creator_tesim" dest="author_timv" />
-  <copyField source="creator_tesim" dest="author_t" />
+  <!-- mutli val creator breaks this - copyField source="creator_tesim" dest="author_t" -->
   <copyField source="author_tesim" dest="author_t" />
   <copyField source="title_tesim" dest="title_timv" />
   <copyField source="subject_tesim" dest="subject_timv" />
@@ -361,10 +361,9 @@
   <copyField source="pubdate_tesim" dest="all_text_timv" />
   <copyField source="pubdate_tesim" dest="all_text_timv" />
   <copyField source="pubdate_tesim" dest="latest_date_isi" />
-<copyField source="date_created_tesim" dest="latest_date_isi" />
-    <copyField source="date_created_tesim" dest="date_tesim" />
-    <copyField source="date_created_tesim" dest="all_text_timv" />
-
+  <copyField source="date_created_tesim" dest="latest_date_isi" />
+  <copyField source="date_created_tesim" dest="date_tesim" />
+  <copyField source="date_created_tesim" dest="all_text_timv" />
   <copyField source="publisher_tesim" dest="all_text_timv" />
   <copyField source="image_ocr_tesim" dest="all_text_timv" />
   <copyField source="title_tesim" dest="all_text_timv" />
@@ -377,8 +376,25 @@
 
   <!-- new copyfields for sharedshelf -->
 <copyField source="*_tesim" dest="all_text_timv" />
+<copyField source="pj_id" dest="all_text_timv" />
+
 <copyField source="*_location_tesim" dest="location_facet_tesim" />
 <copyField source="*_creator_tesim" dest="creator_facet_tesim" />
+<copyField source="*_identifier_tesim" dest="identifier_tesim" />
+<copyField source="work_type_tesim" dest="type_tesim" />
+<copyField source="classification_type_tesim" dest="type_tesim" />
+<copyField source="category_type_tesim" dest="type_tesim" />
+<copyField source="project_type_tesim" dest="type_tesim" />
+<copyField source="*_mat_tech_tesim" dest="mat_tech_tesim" />
+<copyField source="*_bibliography_tesim" dest="bibliography_tesim" />
+<copyField source="*_date_tesim" dest="date_tesim" />
+<copyField source="*_subject_tesim" dest="subject_tesim" />
+<copyField source="*_description_tesim" dest="description_tesim" />
+<copyField source="*_extent_tesim" dest="extent_tesim" />
+<copyField source="*_series_relation_tesim" dest="series_relation_tesim" />
+
+
+
 
 
 <!-- copyfields to join up dlxs and sharedshelf -->
@@ -389,12 +405,12 @@
 <copyField source="creator_tesim" dest="creator_facet_tesim" />
 <copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
 <copyField source="place_of_origin_tesim" dest="creation_site_location_tesim" />
+<copyField source="*_creation_site_location_tesim" dest="creation_site_location_tesim" />
 <copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
 <copyField source="note_tesim" dest="notes_tesim" />
 <copyField source="active_fedora_model_ssi" dest="format_tesim" />
 <copyField source="repository_name_tesim" dest="repository_tesim" />
 <copyField source="collection_name_tesim" dest="collection_tesim" />
-
 
 
 
@@ -461,7 +477,7 @@
       http://wiki.apache.org/solr/SolrAdaptersForLuceneSpatial4
     -->
     <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType"
-      geo="true" distErrPct="0.025" maxDistErr="0.000009" units="degrees" />
+      geo="true" distErrPct="0.025" maxDistErr="0.000009" distanceUnits="degrees" />
 
    <fieldType name="text" class="solr.TextField" omitNorms="false">
       <analyzer>
@@ -478,6 +494,7 @@
         <filter class="solr.TrimFilterFactory"/>
       </analyzer>
     </fieldType>
+
 
     <!-- single token analyzed text, for sorting.  Punctuation is significant. -->
     <fieldtype name="alphaSort" class="solr.TextField" sortMissingLast="true" omitNorms="true">
@@ -503,6 +520,25 @@
       </analyzer>
     </fieldType>
 
+
+    <!-- While the primary target of this analysis is LC Call Numbers, 
+    other call numbers such as "1-1-1" and "Thesis 3" should be supported. -->
+    <fieldType name="callNumberNormalized" class="solr.TextField" omitNorms="true">
+      <analyzer>
+        <!-- replace any periods with spaces if they precede a letter -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\.([\d])" replacement=" $1" />
+        <!-- if a number follows directly after a letter, insert a space between them -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([a-zA-Z])(\d)" replacement="$1 $2" />
+        <!-- if a letter follows directly after a number, insert a space between them -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="(\d)([a-zA-Z])" replacement="$1 $2" />
+        <!-- replace any leading whitespace with "lccncode." to ensure left-anchored phrase searching -->
+        <!-- treat any sequences of characters that are not alphanumeric + periods as breaks between tokens -->
+        <tokenizer class="solr.PatternTokenizerFactory" pattern="[^a-zA-Z\d\.]+"/>
+        <filter class="solr.LowerCaseFilterFactory" />
+      </analyzer>
+    </fieldType>
+
+
     <!-- queries for paths match documents at that path, or in descendent paths -->
     <fieldType name="descendent_path" class="solr.TextField">
       <analyzer type="index">
@@ -512,6 +548,8 @@
         <tokenizer class="solr.KeywordTokenizerFactory" />
       </analyzer>
     </fieldType>
+
+
 
     <!-- queries for paths match documents at that path, or in ancestor paths -->
     <fieldType name="ancestor_path" class="solr.TextField">
