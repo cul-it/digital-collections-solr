@@ -39,6 +39,7 @@
           id
           all_text_timv
           pj_id
+	  identifier_blaschka_isi
        <!--
           active_fedora_model_ssi -->
         </str>
