@@ -404,7 +404,6 @@
 
 <copyField source="author_tesim" dest="creator_facet_tesim" />
 <copyField source="creator_tesim" dest="creator_facet_tesim" />
-<copyField source="pubplace_tesim" dest="creation_site_location_tesim" />
 <copyField source="place_of_origin_tesim" dest="creation_site_location_tesim" />
 <copyField source="*_creation_site_location_tesim" dest="creation_site_location_tesim" />
 <copyField source="pubstmt_pubplace_tesim" dest="repository_place_tesim" />
